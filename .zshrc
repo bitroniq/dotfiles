@@ -96,6 +96,14 @@ source $ZSH/oh-my-zsh.sh
 # bitroniq custom
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
+bindkey '\e[H'  beginning-of-line  # xterm
+bindkey '\eOH'  beginning-of-line  # gnome-terminal
+bindkey '\e[2~' overwrite-mode     # Linux console, xterm, gnome-terminal
+bindkey '\e[3~' delete-char        # Linux console, xterm, gnome-terminal
+bindkey '\e[4~' end-of-line        # Linux console
+bindkey '\e[F'  end-of-line        # xterm
+bindkey '\eOF'  end-of-line        # gnome-terminal
+
 if [[ $TERM == screen ]]; then
     TERM=screen-256color
 fi
