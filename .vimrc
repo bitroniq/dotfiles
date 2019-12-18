@@ -9,8 +9,8 @@ set backspace=indent,eol,start
 set incsearch
 set hlsearch
 set number                      " Show line numbers
-set cursorline                  " Highlight the currently selected line
-set undolevels=1000             " Set undo amount to 1000
+"set cursorline                  " Highlight the currently selected line
+"set undolevels=1000             " Set undo amount to 1000
 set ignorecase                  " Enable case insenstive search
 set ruler                       " show current position at bottom
 "set list                        " show invisible characters
@@ -26,7 +26,7 @@ set shiftround                  " always round indents to multiple of shiftwidth
 set copyindent                  " use existing indents for new indents
 set preserveindent              " save as much indent structure as possible
 set encoding=utf-8
-set ls=2                        " always show status line                                                                                               
+set ls=1                        " always show status line
 set scrolloff=3                 " keep 3 lines when scrolling
 set showcmd                     " display incomplete commands
 set nobackup                    " do not keep backup files
@@ -34,8 +34,10 @@ set nobackup                    " do not keep backup files
 set smarttab
 set smartcase
 set term=screen-256color
+"set term=xterm-256color
+set colorcolumn=79              " Show vertical line to indicate too long lines
 
-filetype off 
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -49,22 +51,28 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic' "Syntax checking for vim (supports all langs)
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-scripts/a.vim'
+Plugin 'ctrlpvim/ctrlp.vim' "fuzzy finder CTRL+P like in Sublime
+Plugin 'vim-scripts/a.vim' "while editing foo.c execute :A to switch to foo.h
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-fugitive' "type :G<tab> to see git commands
+Plugin 'Raimondi/delimitMate' "auto-completion for quotes, parens, brackets
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'jez/vim-c0'
-Plugin 'jez/vim-ispc'
+" - navigation btwn tmux panes and vim splits - ctrl hjkl (need to add 
+"   snippet to .tmux.conf
+Plugin 'jez/vim-c0' "syntax highlighting in c0
+Plugin 'jez/vim-ispc' "syntax hihlighting for ISPC
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'itchyny/calendar.vim'
+Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'neoclide/coc.nvim' "Coc is an intellisense engine for vim8 & neovim
+"Plugin 'ryanoasis/vim-devicons'
 
-call vundle#end()  
+call vundle#end()
 "-------------- PLUGINS END --------------------
 filetype plugin indent on
 
@@ -76,12 +84,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
+colorscheme monokain
+
 
 
 "---------NERD-TREE SETTINGS----------
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_console_startup = 1
+"let g:nerdtree_tabs_open_on_console_startup = 1
 
 
 "-------- SYNTASTIC SETTINGS---------
@@ -122,4 +132,10 @@ augroup END
 
 "-----------TMUX SETTINGS--------------
 let g:tmux_navigator_save_on_switch = 2
+
+"-----------LAST POSITION--------------
+" Remember position of last edit and return on reopen
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
