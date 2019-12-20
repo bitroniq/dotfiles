@@ -7,7 +7,11 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+#ZSH_THEME="crunch"
+#ZSH_THEME="gnzh"
+#ZSH_THEME="fino"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -59,7 +63,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  git #ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -69,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -97,12 +101,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 bindkey '\e[H'  beginning-of-line  # xterm
-bindkey '\eOH'  beginning-of-line  # gnome-terminal
 bindkey '\e[2~' overwrite-mode     # Linux console, xterm, gnome-terminal
 bindkey '\e[3~' delete-char        # Linux console, xterm, gnome-terminal
-bindkey '\e[4~' end-of-line        # Linux console
-bindkey '\e[F'  end-of-line        # xterm
-bindkey '\eOF'  end-of-line        # gnome-terminal
 
 if [[ $TERM == screen ]]; then
     TERM=screen-256color
@@ -136,3 +136,23 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 bindkey -s "^[OX" "="
 
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias grepe='grep --color=auto -E "$1|$" $2'
+
+# If gnupg2 and gpg-agent 2.x are used, be sure to set the environment variable GPG_TTY.
+# git commit -a -S -m "message"
+# After you've ran a signed commit, you can verify it signed with:
+# git log --show-signature -1
+export GPG_TTY=$(tty)
