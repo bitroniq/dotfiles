@@ -1,0 +1,50 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = ""
+#	email = hunter@Flanker.localdomain
+name = "Piotr Kowalski"
+email = piotr.kowalski.prv@gmail.com
+[push]
+	default = simple
+[core]
+	symlinks = false
+	#autocrlf = true
+	autocrlf = input
+        # https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf
+	#How autocrlf works:
+        #
+	#core.autocrlf=true:      core.autocrlf=input:     core.autocrlf=false:
+        #
+	#        repo                     repo                     repo
+	#      ^      V                 ^      V                 ^      V
+	#     /        \               /        \               /        \
+	#crlf->lf    lf->crlf     crlf->lf       \             /          \      
+	#   /            \           /            \           /            \	
+[color]
+	diff = always
+	status = always
+	branch = always
+	interactive = always
+	ui = always
+	grep = always
+	pager = true
+	decorate = always
+	showbranch = always
+[pack]
+	packSizeLimit = 2g
+[diff "astextplain"]
+	textconv = astextplain
+[rebase]
+	autosquash = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[alias]
+	d = difftool
