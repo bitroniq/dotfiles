@@ -76,13 +76,12 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    alias grepe='grep --color=auto -E "$1|$" $2'
 fi
 
 # colored GCC warnings and errors
@@ -92,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias grepe='grep --color=auto -E "$1|$" $2'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -149,5 +149,132 @@ fi
 
 unset env
 
-PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \h \w\[\033[0;32m\] - [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]]\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\]\[\033[0m\] '
 
+##############################################################################
+# PS1 with colors - when there is no __git_ps1 or git-prompt.sh
+##############################################################################
+#PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \h \w\[\033[0;32m\] - [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]]\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\]\[\033[0m\] '
+##############################################################################
+
+
+##############################################################################
+# Download git-prompt.sh and examples
+##############################################################################
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+
+# bash/zsh git prompt support
+#
+# Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
+# Distributed under the GNU General Public License, version 2.0.
+#
+# This script allows you to see repository status in your prompt.
+#
+# To enable:
+#
+#    1) Copy this file to somewhere (e.g. ~/.git-prompt.sh).
+#    2) Add the following line to your .bashrc/.zshrc:
+#        source ~/.git-prompt.sh
+#    3a) Change your PS1 to call __git_ps1 as
+#        command-substitution:
+#        Bash: PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+#        ZSH:  setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
+#        the optional argument will be used as format string.
+#
+# EXAMPLES:
+#source ~/.git-prompt.sh
+#export GIT_PS1_SHOWDIRTYSTATE=1
+#export GIT_PS1_SHOWCOLORHINTS=1
+#export GIT_PS1_SHOWUNTRACKEDFILES=1
+#PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+#
+##############################################################################
+
+#
+###############################################################################
+## PS1 with colors and __git_ps1 - is slow on big repos
+###############################################################################
+## store colors
+#MAGENTA="\[\033[0;35m\]"
+#YELLOW="\[\033[01;33m\]"
+#BLUE="\[\033[00;34m\]"
+#LIGHT_GRAY="\[\033[0;37m\]"
+#CYAN="\[\033[0;36m\]"
+#GREEN="\[\033[00;32m\]"
+#RED="\[\033[0;31m\]"
+#VIOLET='\[\033[01;35m\]'
+# 
+#function color_my_prompt {
+#  local __user_and_host="$GREEN\u@\h"
+#  local __cur_location="$BLUE\W"           # capital 'W': current directory, small 'w': full file path
+#  local __git_branch_color="$GREEN"
+#  local __prompt_tail="$VIOLET$"
+#  local __user_input_color="$GREEN"
+#  local __git_branch=$(__git_ps1); 
+#  
+#  # colour branch name depending on state
+#  if [[ "${__git_branch}" =~ "*" ]]; then     # if repository is dirty
+#      __git_branch_color="$RED"
+#  elif [[ "${__git_branch}" =~ "$" ]]; then   # if there is something stashed
+#      __git_branch_color="$YELLOW"
+#  elif [[ "${__git_branch}" =~ "%" ]]; then   # if there are only untracked files
+#      __git_branch_color="$LIGHT_GRAY"
+#  elif [[ "${__git_branch}" =~ "+" ]]; then   # if there are staged files
+#      __git_branch_color="$CYAN"
+#  fi
+#   
+#  # Build the PS1 (Prompt String)
+#  PS1="$__user_and_host $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color "
+#}
+# 
+## configure PROMPT_COMMAND which is executed each time before PS1
+#export PROMPT_COMMAND=color_my_prompt
+# 
+## if .git-prompt.sh exists, set options and execute it
+#if [ -f ~/.git-prompt.sh ]; then
+#  GIT_PS1_SHOWDIRTYSTATE=true
+#  GIT_PS1_SHOWSTASHSTATE=true
+#  GIT_PS1_SHOWUNTRACKEDFILES=true
+#  GIT_PS1_SHOWUPSTREAM="auto"
+#  GIT_PS1_HIDE_IF_PWD_IGNORED=true
+#  GIT_PS1_SHOWCOLORHINTS=true
+#  . ~/.git-prompt.sh
+#fi
+###############################################################################
+#
+
+##############################################################################
+# PS1 with colors and __git_ps1 - fast by HUNTER
+##############################################################################
+# store colors
+MAGENTA="\[\033[0;35m\]"
+YELLOW="\[\033[01;33m\]"
+BLUE="\[\033[00;34m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
+GREEN="\[\033[00;32m\]"
+RED="\[\033[0;31m\]"
+VIOLET='\[\033[01;35m\]'
+ 
+function color_my_prompt {
+  local __user_and_host="$GREEN\u@\h"
+  local __cur_location="$BLUE\W"           # capital 'W': current directory, small 'w': full file path
+  local __git_branch_color="$GREEN"
+  local __prompt_tail="$VIOLET$"
+  local __user_input_color="$GREEN"
+  local __git_branch=$(__git_ps1); 
+  
+  # Build the PS1 (Prompt String)
+  PS1="$__user_and_host $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color "
+}
+ 
+# configure PROMPT_COMMAND which is executed each time before PS1
+export PROMPT_COMMAND=color_my_prompt
+ 
+# if .git-prompt.sh exists, set options and execute it
+if [ -f ~/.git-prompt.sh ]; then
+  . ~/.git-prompt.sh
+fi
+##############################################################################
+
+
+#bash -c zsh
