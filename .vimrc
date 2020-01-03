@@ -69,8 +69,12 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'itchyny/calendar.vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'neoclide/coc.nvim' "Coc is an intellisense engine for vim8 & neovim
+Plugin 'neoclide/coc.nvim' "Coc - Conquer of Completion - is an intellisense
+                           "engine for vim8 & neovim
 "Plugin 'ryanoasis/vim-devicons'
+Plugin 'dense-analysis/ale' "ALE (Asynchronous Lint Engine) linting
+                            "(syntax checking and semantic errors)
+                            " :ALEToggle
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
