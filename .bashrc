@@ -126,28 +126,30 @@ export LS_COLORS
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-# SSH Agent and keys
-env=~/.ssh/agent.env
-
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add
-fi
-
-unset env
+# ##############################################################################
+# # SSH Agent and keys
+# ##############################################################################
+# env=~/.ssh/agent.env
+# 
+# agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+# 
+# agent_start () {
+#     (umask 077; ssh-agent >| "$env")
+#     . "$env" >| /dev/null ; }
+# 
+# agent_load_env
+# 
+# # agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+# agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+# 
+# if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+#     agent_start
+#     ssh-add
+# elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+#     ssh-add
+# fi
+# 
+# unset env
 
 
 ##############################################################################
@@ -254,6 +256,7 @@ CYAN="\[\033[0;36m\]"
 GREEN="\[\033[00;32m\]"
 RED="\[\033[0;31m\]"
 VIOLET='\[\033[01;35m\]'
+GRAY="\033[0m\]"
  
 function color_my_prompt {
   local __user_and_host="$GREEN\u@\h"
@@ -264,7 +267,7 @@ function color_my_prompt {
   local __git_branch=$(__git_ps1); 
   
   # Build the PS1 (Prompt String)
-  PS1="$__user_and_host $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color "
+  PS1="$__user_and_host $__cur_location$__git_branch_color$__git_branch $__prompt_tail$__user_input_color $GRAY"
 }
  
 # configure PROMPT_COMMAND which is executed each time before PS1
