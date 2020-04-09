@@ -51,7 +51,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/syntastic' "Syntax checking for vim (supports all langs)
+"Plugin 'scrooloose/syntastic' "Syntax checking for vim (supports all langs)
+                              "Can be replaced with ALE (Asynchronous Lint
+                              "Engine)
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
@@ -75,6 +77,9 @@ Plugin 'neoclide/coc.nvim' "Coc - Conquer of Completion - is an intellisense
 Plugin 'dense-analysis/ale' "ALE (Asynchronous Lint Engine) linting
                             "(syntax checking and semantic errors)
                             " :ALEToggle
+
+Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
@@ -142,4 +147,31 @@ let g:tmux_navigator_save_on_switch = 2
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+"-----------CTRLP SETTINGS--------------
+let g:ctrlp_show_hidden = 1
+
+"-----------SHOW RELATIVE AND ABSOLUT LINE NUMBERS - HYBRID MODE--------------
+"Ref https://jeffkreeftmeijer.com/vim-number/
+set number relativenumber
+
+
+"---------INDENTLINE SETTINGS-----------
+"let g:indentLine_char = 'c'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 1
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
+"For code indented with tabs I think there is no need to support it, because
+"you can use :set list lcs=tab:\|\ (here is a space)
+
+"---------elzr/vim-json SETTINGS--------
+let g:vim_json_syntax_conceal = 0
+
+"--------------------------------------
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
