@@ -14,6 +14,7 @@ set number                      " Show line numbers
 set ignorecase                  " Enable case insenstive search
 set ruler                       " show current position at bottom
 "set list                        " show invisible characters
+set list listchars=tab:»\ ,trail:· "Show invisible tabs for tab indented files
 "set mouse=a                     " try to use a mouse in the console (wimp!)
 set showmatch                   " show matching brackets
 set autoindent                  " set the cursor at same indent as line above
@@ -79,7 +80,9 @@ Plugin 'dense-analysis/ale' "ALE (Asynchronous Lint Engine) linting
                             " :ALEToggle
 
 Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
+"Plugin 'nathanaelkane/vim-indent-guides' "isually displaying indent levels
 Plugin 'elzr/vim-json'
+Plugin 'dracula/vim'
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
@@ -94,14 +97,13 @@ let g:airline_theme='solarized'
 set background=dark
 let g:solarized_termcolors=256
 "colorscheme solarized
-colorscheme monokain
-
-
+"colorscheme monokain
+colorscheme dracula
 
 "---------NERD-TREE SETTINGS----------
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 "let g:nerdtree_tabs_open_on_console_startup = 1
-
+autocmd BufEnter NERD_tree* :LeadingSpaceDisable "Neeeded if indentLine is on
 
 "-------- SYNTASTIC SETTINGS---------
 let g:syntastic_error_symbol = '✘'
@@ -111,7 +113,6 @@ augroup mySyntastic
     au!
     au FileType tex let b:syntastic_mode = "passive"
 augroup END
-
 
 "-------- TAGS SETTINGS --------------------------------
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
@@ -127,7 +128,6 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 "---------GIT SETTINGS--------------
 hi clear SignColumn
 let g:airline#extensions#hunks#non_zero_only = 1
-
 
 "----------DELIMITEMATE SETTINGS-----------------
 let delimitMate_expand_cr = 1
@@ -155,15 +155,22 @@ let g:ctrlp_show_hidden = 1
 "Ref https://jeffkreeftmeijer.com/vim-number/
 set number relativenumber
 
-
 "---------INDENTLINE SETTINGS-----------
-"let g:indentLine_char = 'c'
+"let g:indentLine_char = '|'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 "For code indented with tabs I think there is no need to support it, because
 "you can use :set list lcs=tab:\|\ (here is a space)
+
+"--------INDENTGUIDE SETTINGS-----------
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_start_level = 1
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_auto_colors = 1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey ctermbg=3
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue ctermbg=4
 
 "---------elzr/vim-json SETTINGS--------
 let g:vim_json_syntax_conceal = 0
