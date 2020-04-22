@@ -151,6 +151,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias grepe='grep --color=auto -E "$1|$" $2'
+alias ll='ls -lah --group-directories-first'
 
 # If gnupg2 and gpg-agent 2.x are used, be sure to set the environment variable GPG_TTY.
 # git commit -a -S -m "message"
