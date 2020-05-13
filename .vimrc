@@ -82,7 +82,7 @@ Plugin 'dense-analysis/ale' "ALE (Asynchronous Lint Engine) linting
 Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
 "Plugin 'nathanaelkane/vim-indent-guides' "isually displaying indent levels
 Plugin 'elzr/vim-json'
-Plugin 'dracula/vim'
+Plugin 'godlygeek/tabular' "Plugin to allow easy alignment - try :Tab /=
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
@@ -96,9 +96,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
 set background=dark
 let g:solarized_termcolors=256
-"colorscheme solarized
+colorscheme solarized
 "colorscheme monokain
-colorscheme dracula
 
 "---------NERD-TREE SETTINGS----------
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
