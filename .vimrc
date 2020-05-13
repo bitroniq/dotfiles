@@ -9,7 +9,7 @@ set backspace=indent,eol,start
 set incsearch
 set hlsearch
 set number                      " Show line numbers
-"set cursorline                  " Highlight the currently selected line
+set cursorline                  " Highlight the currently selected line
 "set undolevels=1000             " Set undo amount to 1000
 set ignorecase                  " Enable case insenstive search
 set ruler                       " show current position at bottom
@@ -83,6 +83,8 @@ Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
 "Plugin 'nathanaelkane/vim-indent-guides' "isually displaying indent levels
 Plugin 'elzr/vim-json'
 Plugin 'dracula/vim'
+Plugin 'godlygeek/tabular'       "https://vimawesome.com/plugin/markdown-syntax
+Plugin 'plasticboy/vim-markdown' "https://vimawesome.com/plugin/markdown-syntax
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
