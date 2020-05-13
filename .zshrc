@@ -13,6 +13,7 @@
 ZSH_THEME="gnzh"
 #ZSH_THEME="fino"
 #ZSH_THEME="miloshadzic"
+#ZSH_THEME="dracula"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
