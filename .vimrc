@@ -83,8 +83,6 @@ Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
 "Plugin 'nathanaelkane/vim-indent-guides' "isually displaying indent levels
 Plugin 'elzr/vim-json'
 Plugin 'dracula/vim'
-Plugin 'godlygeek/tabular'       "https://vimawesome.com/plugin/markdown-syntax
-Plugin 'plasticboy/vim-markdown' "https://vimawesome.com/plugin/markdown-syntax
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
