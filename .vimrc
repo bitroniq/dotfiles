@@ -83,6 +83,7 @@ Plugin 'Yggdroot/indentLine' "displaying thin vertical lines at each indentA
 "Plugin 'nathanaelkane/vim-indent-guides' "isually displaying indent levels
 Plugin 'elzr/vim-json'
 Plugin 'godlygeek/tabular' "Plugin to allow easy alignment - try :Tab /=
+Plugin 'severin-lemaignan/vim-minimap'
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
@@ -154,6 +155,22 @@ let g:ctrlp_show_hidden = 1
 "Ref https://jeffkreeftmeijer.com/vim-number/
 set number relativenumber
 
+"-----------RELATIVE NUMBER TOGGE-------
+"https://stackoverflow.com/questions/42566459/how-to-display-wrapped-relative-line-number-in-vim
+"Add the code below to your .vimrc file, then you can use leadernt to toggle
+"the number.
+"Leader is the \ key
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <leader>n :call NumberToggle()<cr>
+
 "---------INDENTLINE SETTINGS-----------
 "let g:indentLine_char = '|'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -174,10 +191,26 @@ let g:indentLine_leadingSpaceChar = '·'
 "---------elzr/vim-json SETTINGS--------
 let g:vim_json_syntax_conceal = 0
 
-"--------------------------------------
+"---------vim-minimap SETTINS----------
+let g:minimap_highlight='Visual'
+"Usage
+":Minimap to show the minimap, :MinimapClose to hide it.
+"Default mappings: <Leader>mm to display the minimap, <Leader>mc to close it.
+"To overwrite the default keybindings, using following settings in ``.vimrc'':
+"let g:minimap_show='<leader>ms'
+"let g:minimap_update='<leader>mu'
+"let g:minimap_close='<leader>gc'
+"let g:minimap_toggle='<leader>gt'
+let g:minimap_toggle='<leader>m'
+"
+"Leader key is usually "\" - you have 1s to type mm later
+
+"------------------------------------
+"https://jeffkreeftmeijer.com/vim-number/
+"Funtion to show relative number only on focus
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-
+"---------------------------------------
