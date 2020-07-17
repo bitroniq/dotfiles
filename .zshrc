@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/hunter/.oh-my-zsh"
@@ -159,3 +159,5 @@ alias ll='ls -lah --group-directories-first'
 # After you've ran a signed commit, you can verify it signed with:
 # git log --show-signature -1
 export GPG_TTY=$(tty)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
