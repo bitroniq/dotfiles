@@ -4,16 +4,26 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
   export ZSH="/home/hunter/.oh-my-zsh"
 
+if [[ $TERM == screen ]]; then
+    TERM=screen-256color
+fi
+
+if [[ $TERM == xterm ]]; then
+    TERM=xterm-256color
+fi
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="crunch"
-ZSH_THEME="gnzh"
+#ZSH_THEME="gnzh"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="fino"
 #ZSH_THEME="miloshadzic"
 #ZSH_THEME="dracula"
+#POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -106,13 +116,6 @@ bindkey '\e[H'  beginning-of-line  # xterm
 bindkey '\e[2~' overwrite-mode     # Linux console, xterm, gnome-terminal
 bindkey '\e[3~' delete-char        # Linux console, xterm, gnome-terminal
 
-if [[ $TERM == screen ]]; then
-    TERM=screen-256color
-fi
-
-if [[ $TERM == xterm ]]; then
-    TERM=xterm-256color
-fi
 
 # Keypad
 # 0 . Enter

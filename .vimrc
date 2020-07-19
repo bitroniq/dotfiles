@@ -34,8 +34,8 @@ set nobackup                    " do not keep backup files
 "set paste                      " Paste mode - breaks autoindent
 set smarttab
 set smartcase
-set term=screen-256color
-"set term=xterm-256color
+"set term=screen-256color
+set term=xterm-256color
 set colorcolumn=79              " Show vertical line to indicate too long lines
 
 filetype off
