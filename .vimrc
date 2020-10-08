@@ -382,6 +382,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "To enable conceal use Vim's standard conceal configuration.
 "set conceallevel=2
+set conceallevel=0
 
 "To disable conceal regardless of conceallevel setting, add the following to
 "your .vimrc:
