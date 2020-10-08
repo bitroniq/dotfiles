@@ -283,3 +283,10 @@ fi
 #bash -c zsh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Due to systemd nor running on WSL
+# It's not possible to run temp services
+# https://stackoverflow.com/questions/45517515/running-screen-without-additional-permissions-on-wsl
+export SCREENDIR=$HOME/.screen
+[ -d $SCREENDIR ] || mkdir -p -m 700 $SCREENDIR
+
