@@ -184,6 +184,17 @@ let g:indentLine_leadingSpaceChar = '·'
 "For code indented with tabs I think there is no need to support it, because
 "you can use :set list lcs=tab:\|\ (here is a space)
 
+" I'm experiecing the most annoying thing ever: when I edit a markdown file,
+" asterisk characters are hidden by default.
+" If I set on an open buffer :set conceallevel=0, asterisks shows up as they
+" should, but if I put this conf in my init.vim file, it does not work
+" anymore.
+" it does not work if conceallevel is not set to 1 or 2, so it set this
+" parameter to 2 by default.
+" The side effect is that markdown files are terribly displayed, and you
+" cannot edit them confortably..
+let g:indentLine_fileTypeExclude = ['markdown']
+
 "--------INDENTGUIDE SETTINGS-----------
 "let g:indent_guides_enable_on_vim_startup = 1
 "let g:indent_guides_start_level = 1
@@ -382,11 +393,9 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "To enable conceal use Vim's standard conceal configuration.
 "set conceallevel=2
-set conceallevel=0
 
 "To disable conceal regardless of conceallevel setting, add the following to
 "your .vimrc:
 "let g:vim_markdown_conceal = 0
-
 let g:vim_markdown_conceal = 0
 "-----------------------------------------------------------------------------
