@@ -51,6 +51,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 "Plugin 'scrooloose/syntastic' "Syntax checking for vim (supports all langs)
                               "Can be replaced with ALE (Asynchronous Lint
@@ -86,6 +87,7 @@ Plugin 'godlygeek/tabular' "Plugin to allow easy alignment - try :Tab /=
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 "-------------- PLUGINS END --------------------
@@ -367,4 +369,23 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "-----------------------------------------------------------------------------
+"---------------------- fzf settings -----------------------------------------
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+"-----------------------------------------------------------------------------
+"------------------------VIM Markdown-----------------------------------------
+"g:vim_markdown_conceal
+"Concealing is set for some syntax.
+"For example, conceal [link text](link url) as just link text. Also, _italic_
+"and *italic* will conceal to just italic. Similarly __bold__, **bold**,
+"___italic bold___, and ***italic bold*** will conceal to just bold, bold,
+"italic bold, and italic bold respectively.
 
+"To enable conceal use Vim's standard conceal configuration.
+"set conceallevel=2
+
+"To disable conceal regardless of conceallevel setting, add the following to
+"your .vimrc:
+"let g:vim_markdown_conceal = 0
+
+let g:vim_markdown_conceal = 0:
+"-----------------------------------------------------------------------------
