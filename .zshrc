@@ -30,7 +30,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="fino"
 #ZSH_THEME="miloshadzic"
 #ZSH_THEME="dracula"
-#POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -82,7 +81,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git #ssh-agent
+  git ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -153,6 +152,7 @@ bindkey -s "^[OX" "="
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    #alias ls='lsd --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
 
@@ -162,7 +162,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias grepe='grep --color=auto -E "$1|$" $2'
-alias ll='ls -lah --group-directories-first'
+#alias ll='ls -lah --group-directories-first'
+alias ll='lsd -lah --group-dirs first'
 
 # If gnupg2 and gpg-agent 2.x are used, be sure to set the environment variable GPG_TTY.
 # git commit -a -S -m "message"
@@ -174,3 +175,10 @@ export GPG_TTY=$(tty)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Due to systemd nor running on WSL
+# It's not possible to run temp services
+# https://stackoverflow.com/questions/45517515/running-screen-without-additional-permissions-on-wsl
+export SCREENDIR=$HOME/.screen
+[ -d $SCREENDIR ] || mkdir -p -m 700 $SCREENDIR
+
