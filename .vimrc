@@ -7,7 +7,7 @@ syntax on
 set nocompatible
 set backspace=indent,eol,start
 set incsearch
-set hlsearch
+set nohlsearch                  " Don't highlight all search results
 set number                      " Show line numbers
 set cursorline                  " Highlight the currently selected line
 "set undolevels=1000             " Set undo amount to 1000
@@ -31,12 +31,15 @@ set ls=1                        " always show status line
 set scrolloff=3                 " keep 3 lines when scrolling
 set showcmd                     " display incomplete commands
 set nobackup                    " do not keep backup files
+set noswapfile
 "set paste                      " Paste mode - breaks autoindent
 set smarttab
-set smartcase
+set smartcase                   " Works only with ignorecase
 "set term=screen-256color
 set term=xterm-256color
 set colorcolumn=79              " Show vertical line to indicate too long lines
+set undodir=~/.vim/undodir
+set undofile
 
 filetype off
 
@@ -71,6 +74,7 @@ Plugin 'jez/vim-c0' "syntax highlighting in c0
 Plugin 'jez/vim-ispc' "syntax hihlighting for ISPC
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'itchyny/calendar.vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'neoclide/coc.nvim' "Coc - Conquer of Completion - is an intellisense
@@ -101,8 +105,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
 "colorscheme monokain
+"colorscheme dracula
+"colorscheme gruvbox
+colorscheme molokai
 
 "---------NERD-TREE SETTINGS----------
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
