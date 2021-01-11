@@ -81,7 +81,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git ssh-agent
+  git ssh-agent docker docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -181,4 +181,21 @@ export GPG_TTY=$(tty)
 # https://stackoverflow.com/questions/45517515/running-screen-without-additional-permissions-on-wsl
 export SCREENDIR=$HOME/.screen
 [ -d $SCREENDIR ] || mkdir -p -m 700 $SCREENDIR
+
+# This is only for WSL2 on Windows due to systemd not running on WSL2
+if pgrep -x "sshd" >/dev/null
+then
+    echo "sshd is running"
+else
+    echo "sshd stopped"
+    sudo /etc/init.d/ssh start
+fi
+
+if pgrep -x "cron" >/dev/null
+then
+    echo "cron is running"
+else
+    echo "cron stopped"
+    sudo /etc/init.d/cron start
+fi
 
