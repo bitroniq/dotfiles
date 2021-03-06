@@ -406,3 +406,12 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal = 0
 "-----------------------------------------------------------------------------
+"------------------VIM on WSL - synchronize system clipboard------------------
+"https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed
+if system('uname -r') =~ "Microsoft"
+  augroup Yank
+    autocmd!
+    autocmd TextYankPost * :call system('clip.exe ',@")
+  augroup END
+endif
+"-----------------------------------------------------------------------------
