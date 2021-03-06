@@ -108,8 +108,8 @@ let g:solarized_termcolors=256
 "colorscheme solarized
 "colorscheme monokain
 "colorscheme dracula
-"colorscheme gruvbox
-colorscheme molokai
+colorscheme gruvbox
+"colorscheme molokai
 
 "---------NERD-TREE SETTINGS----------
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
