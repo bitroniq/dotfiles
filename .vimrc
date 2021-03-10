@@ -126,11 +126,13 @@ augroup mySyntastic
 augroup END
 
 "-------- TAGS SETTINGS --------------------------------
+"You need to install ctags
+"apt install ctags
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
+"let g:easytags_dynamic_files = 2 "new tags files are created in the same directory as the file you're editing
 let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
+"let g:easytags_suppress_ctags_warning = 1 "Don't warn if ctags is not found
 let g:tagbar_autoclose=2
 
 nmap <silent> <leader>b :TagbarToggle<CR>
