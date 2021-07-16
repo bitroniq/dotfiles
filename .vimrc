@@ -410,7 +410,7 @@ let g:vim_markdown_conceal = 0
 "-----------------------------------------------------------------------------
 "------------------VIM on WSL - synchronize system clipboard------------------
 "https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed
-if system('uname -r') =~ "Microsoft"
+if system('uname -r') =~ "microsoft"
   augroup Yank
     autocmd!
     autocmd TextYankPost * :call system('clip.exe ',@")
