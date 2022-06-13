@@ -48,3 +48,5 @@ email = piotr.kowalski.prv@gmail.com
 	tool = vimdiff
 [alias]
 	d = difftool
+[url "git@infra-aws1-gitlab-01.infra-aws1.ns.acreto.net:"]
+	insteadOf = git://gitlab.ops.acreto.io

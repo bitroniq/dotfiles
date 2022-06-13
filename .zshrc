@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/hunter/.oh-my-zsh"
@@ -81,7 +81,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git ssh-agent docker docker-compose
+  git ssh-agent docker docker-compose taskwarrior
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -185,7 +185,7 @@ export SCREENDIR=$HOME/.screen
 # This is only for WSL2 on Windows due to systemd not running on WSL2
 if pgrep -x "sshd" >/dev/null
 then
-    echo "sshd is running"
+    #echo "sshd is running"
 else
     echo "sshd stopped"
     sudo /etc/init.d/ssh start
@@ -193,7 +193,7 @@ fi
 
 if pgrep -x "cron" >/dev/null
 then
-    echo "cron is running"
+    #echo "cron is running"
 else
     echo "cron stopped"
     sudo /etc/init.d/cron start
@@ -204,4 +204,14 @@ fi
 # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 export LIBGL_ALWAYS_INDIRECT=1
+
+# GitLab access token
+export ACCESS_TOKEN=$(cat ~/.acreto-gitlab-access-token)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Enable GoLang modules
+export GO111MODULE=on
 

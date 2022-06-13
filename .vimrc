@@ -41,7 +41,8 @@ set colorcolumn=79              " Show vertical line to indicate too long lines
 set undodir=~/.vim/undodir
 set undofile
 
-filetype off
+"filetype off
+filetype on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -389,10 +390,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "-----------------------------------------------------------------------------
+"------------------------------ ALE settings----------------------------------
+"B
+"https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
+let g:ale_disable_lsp = 1
+"-----------------------------------------------------------------------------
 "---------------------- fzf settings -----------------------------------------
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "-----------------------------------------------------------------------------
 "------------------------VIM Markdown-----------------------------------------
+"A
 "g:vim_markdown_conceal
 "Concealing is set for some syntax.
 "For example, conceal [link text](link url) as just link text. Also, _italic_
@@ -407,6 +414,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "your .vimrc:
 "let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal = 0
+"A
 "-----------------------------------------------------------------------------
 "------------------VIM on WSL - synchronize system clipboard------------------
 "https://vi.stackexchange.com/questions/12376/vim-on-wsl-synchronize-system-clipboard-set-clipboard-unnamed
@@ -440,4 +448,13 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 " It's useful to show the buffer number in the status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+"-----------------------------------------------------------------------------
+"-------------------Session hotkeys-------------------------------------------
+" :mksession command, to create a session:
+" A Session keeps the Views for all windows, plus the global settings. You can
+" save a Session and when you restore it later the window layout looks the
+" same. You can use a Session to quickly switch between different projects,
+" automatically loading the files you were last working on in that project.
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
 "-----------------------------------------------------------------------------
