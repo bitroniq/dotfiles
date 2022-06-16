@@ -298,6 +298,11 @@ tmux_conf_copy_to_os_clipboard=false
 # --- hunter customizations --------------------------------------------------
 bind M-1 select-layout even-horizontal
 bind M-2 select-layout even-vertical
-# toggle synchronize-panes - that's prefix + ctrl-p
+# toggle synchronize-panes - that's prjefix + ctrl-p
 bind M-s setw synchronize-panes
-
+# use vi mode keys for copy paste
+setw -g mode-keys vi
+# Use v to trigger selection    
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+# Use y to yank current selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
