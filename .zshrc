@@ -202,8 +202,8 @@ fi
 
 # How to set up working X11 forwarding on WSL2
 # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=1
+#export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+#export LIBGL_ALWAYS_INDIRECT=1
 
 # GitLab access token
 export ACCESS_TOKEN=$(cat ~/.acreto-gitlab-access-token)
@@ -214,4 +214,23 @@ export NVM_DIR="$HOME/.nvm"
 
 # Enable GoLang modules
 export GO111MODULE=on
+alias task='nocorrect task'
+
+
+# SSH autocompletion based on https://github.com/danihodovic/generate-ssh-configs
+function fzf-ssh {
+  all_matches=$(grep -P -r "Host\s+\w+" ~/.ssh/ | grep -v '\*')
+  only_host_parts=$(echo "$all_matches" | awk '{print $NF}')
+  selection=$(echo "$only_host_parts" | fzf)
+  echo $selection
+
+  if [ ! -z $selection ]; then
+    BUFFER="ssh $selection"
+    zle accept-line
+  fi
+  zle reset-prompt
+
+}
+zle     -N     fzf-ssh
+bindkey "^s" fzf-ssh
 
