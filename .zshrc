@@ -200,6 +200,15 @@ else
 fi
 
 
+if pgrep -x "rsyslogd" >/dev/null
+then
+    #echo "cron is running"
+else
+    echo "rsyslog stopped"
+    sudo /etc/init.d/rsyslog start
+fi
+
+
 # How to set up working X11 forwarding on WSL2
 # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
 #export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
@@ -234,3 +243,5 @@ function fzf-ssh {
 zle     -N     fzf-ssh
 bindkey "^s" fzf-ssh
 
+# AWS v2 https://pypi.org/project/awscliv2/
+alias aws='awsv2'
