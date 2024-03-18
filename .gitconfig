@@ -37,16 +37,25 @@ email = piotr.kowalski.prv@gmail.com
 	textconv = astextplain
 [rebase]
 	autosquash = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [diff]
 	tool = vimdiff
 [merge]
 	tool = vimdiff
 [alias]
 	d = difftool
-[url "git@infra-aws1-gitlab-01.infra-aws1.ns.acreto.net:"]
+[url "git@gitlab.infra.acreto.net:"]
 	insteadOf = git://gitlab.ops.acreto.io
+[url "git@gitlab.infra.acreto.net:"]
+    insteadOf = https://gitlab.ops.acreto.io
+[url "git@gitlab.infra.acreto.net:"]
+    insteadOf = git://infra-aws1-gitlab-01.infra-aws1.ns.acreto.net
+[url "git@gitlab.infra.acreto.net:"]
+    insteadOf = https://infra-aws1-gitlab-01.infra-aws1.ns.acreto.net
+[url "git@gitlab.infra.acreto.net:"]
+    insteadOf = "git@infra-aws1-gitlab-01.infra-aws1.ns.acreto.net:"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
